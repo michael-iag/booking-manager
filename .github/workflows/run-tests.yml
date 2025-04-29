@@ -66,18 +66,16 @@ jobs:
     - name: Generate Allure Report
       if: always()
       run: |
-        # Install Allure command-line tool if not already cached or available
-        if ! command -v allure &> /dev/null
-        then
-          echo "Allure not found, installing..."
-          # Consider caching Allure installation for faster runs
-          curl -o allure-commandline.tgz -OLs https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/2.24.0/allure-commandline-2.24.0.tgz
-          tar -zxvf allure-commandline.tgz
-          sudo mv allure-2.24.0/bin/allure /usr/local/bin/
-          sudo chmod +x /usr/local/bin/allure
-          rm -rf allure-commandline.tgz allure-2.24.0
-        fi
-        allure generate ${{ env.ALLURE_RESULTS_DIR }} -o ${{ env.ALLURE_REPORT_DIR }} --clean
+        # Download and extract Allure
+        curl -o allure-commandline.tgz -OLs https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/2.24.0/allure-commandline-2.24.0.tgz
+        tar -zxvf allure-commandline.tgz
+        
+        # Run Allure directly from the extracted directory
+        # This preserves the required directory structure
+        ./allure-2.24.0/bin/allure generate ${{ env.ALLURE_RESULTS_DIR }} -o ${{ env.ALLURE_REPORT_DIR }} --clean
+        
+        # Clean up
+        rm -rf allure-commandline.tgz
 
     - name: Archive Allure Report
       if: always()
