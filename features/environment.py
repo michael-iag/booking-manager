@@ -12,11 +12,11 @@ options = {
     # Optional: Add default tags to all metrics sent from this environment
     # Example: Check for GitHub Actions environment variables
     "statsd_default_tags": [
-        f"repository:{os.environ.get("GITHUB_REPOSITORY", "unknown")}",
-        f"workflow:{os.environ.get("GITHUB_WORKFLOW", "unknown")}",
-        f"run_id:{os.environ.get("GITHUB_RUN_ID", "unknown")}",
-        f"commit:{os.environ.get("GITHUB_SHA", "unknown")}",
-        f"branch:{os.environ.get("GITHUB_REF_NAME", "unknown")}"
+        f"repository:{os.environ.get('GITHUB_REPOSITORY', 'unknown')}",
+        f"workflow:{os.environ.get('GITHUB_WORKFLOW', 'unknown')}",
+        f"run_id:{os.environ.get('GITHUB_RUN_ID', 'unknown')}",
+        f"commit:{os.environ.get('GITHUB_SHA', 'unknown')}",
+        f"branch:{os.environ.get('GITHUB_REF_NAME', 'unknown')}"
     ]
 }
 initialize(**options)
@@ -56,13 +56,13 @@ def after_scenario(context, scenario):
     statsd.distribution("behave.scenario.duration", scenario_duration_ms, tags=scenario_tags)
 
     # Increment status counters
-    if scenario.status == "passed":
+    if scenario.status.name == "passed":
         context.passed_scenarios += 1
         statsd.increment("behave.scenario.passed", tags=scenario_tags)
-    elif scenario.status == "failed":
+    elif scenario.status.name == "failed":
         context.failed_scenarios += 1
         statsd.increment("behave.scenario.failed", tags=scenario_tags)
-    elif scenario.status == "skipped":
+    elif scenario.status.name == "skipped":
         context.skipped_scenarios += 1
         statsd.increment("behave.scenario.skipped", tags=scenario_tags)
     else:
