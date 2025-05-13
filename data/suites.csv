@@ -1,0 +1,7 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Tue May 13 20:01:23 UTC 2025","Tue May 13 20:01:23 UTC 2025","1","","","","","","List all bookings",""
+"passed","Tue May 13 20:01:23 UTC 2025","Tue May 13 20:01:23 UTC 2025","2","","","","","","Create booking with invalid inputs",""
+"passed","Tue May 13 20:01:23 UTC 2025","Tue May 13 20:01:23 UTC 2025","2","","","","","","Retrieve booking details",""
+"passed","Tue May 13 20:01:23 UTC 2025","Tue May 13 20:01:23 UTC 2025","1","","","","","","List bookings by status",""
+"passed","Tue May 13 20:01:23 UTC 2025","Tue May 13 20:01:23 UTC 2025","2","","","","","","Create a new booking",""
+"passed","Tue May 13 20:01:23 UTC 2025","Tue May 13 20:01:23 UTC 2025","2","","","","","","Cancel a booking",""

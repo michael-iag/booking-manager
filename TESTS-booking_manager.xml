@@ -1,0 +1,93 @@
+<testsuite name="booking_manager.Booking Management" tests="6" errors="0" failures="0" skipped="0" time="0.002548" timestamp="2025-05-13T20:01:23.491101" hostname="fv-az787-753"><testcase classname="booking_manager.Booking Management" name="Create a new booking" status="passed" time="0.000379"><system-out>
+<![CDATA[
+@scenario.begin
+
+  @sanity @critical
+  Scenario: Create a new booking
+    Given the booking manager system is initialized ... passed in 0.000s
+    When I create a booking for flight "FL001" with passenger "Alice Smith" and 1 seat ... passed in 0.000s
+    Then the booking should be created successfully ... passed in 0.000s
+    And the booking status should be "CONFIRMED" ... passed in 0.000s
+
+@scenario.end
+--------------------------------------------------------------------------------
+]]>
+</system-out></testcase><testcase classname="booking_manager.Booking Management" name="Retrieve booking details" status="passed" time="0.000491"><system-out>
+<![CDATA[
+@scenario.begin
+
+  @sanity
+  Scenario: Retrieve booking details
+    Given the booking manager system is initialized ... passed in 0.000s
+    When I create a booking for flight "FL002" with passenger "Bob Johnson" and 2 seats ... passed in 0.000s
+    And I retrieve the booking details ... passed in 0.000s
+    Then the booking should have flight ID "FL002" ... passed in 0.000s
+    And the booking should have passenger name "Bob Johnson" ... passed in 0.000s
+    And the booking should have 2 seats ... passed in 0.000s
+
+@scenario.end
+--------------------------------------------------------------------------------
+]]>
+</system-out></testcase><testcase classname="booking_manager.Booking Management" name="Cancel a booking" status="passed" time="0.00039"><system-out>
+<![CDATA[
+@scenario.begin
+
+  @critical
+  Scenario: Cancel a booking
+    Given the booking manager system is initialized ... passed in 0.000s
+    When I create a booking for flight "FL003" with passenger "Charlie Brown" and 3 seats ... passed in 0.000s
+    And I cancel the booking ... passed in 0.000s
+    Then the booking should be cancelled successfully ... passed in 0.000s
+    And the booking status should be "CANCELLED" ... passed in 0.000s
+
+@scenario.end
+--------------------------------------------------------------------------------
+]]>
+</system-out></testcase><testcase classname="booking_manager.Booking Management" name="List all bookings" status="passed" time="0.000313"><system-out>
+<![CDATA[
+@scenario.begin
+
+  @sanity
+  Scenario: List all bookings
+    Given the booking manager system is initialized ... passed in 0.000s
+    When I create a booking for flight "FL001" with passenger "Alice Smith" and 1 seat ... passed in 0.000s
+    And I create a booking for flight "FL002" with passenger "Bob Johnson" and 2 seats ... passed in 0.000s
+    Then the list of all bookings should contain 2 bookings ... passed in 0.000s
+
+@scenario.end
+--------------------------------------------------------------------------------
+]]>
+</system-out></testcase><testcase classname="booking_manager.Booking Management" name="List bookings by status" status="passed" time="0.000466"><system-out>
+<![CDATA[
+@scenario.begin
+
+  @edgecase
+  Scenario: List bookings by status
+    Given the booking manager system is initialized ... passed in 0.000s
+    When I create a booking for flight "FL001" with passenger "Alice Smith" and 1 seat ... passed in 0.000s
+    And I create a booking for flight "FL002" with passenger "Bob Johnson" and 2 seats ... passed in 0.000s
+    And I cancel the first booking ... passed in 0.000s
+    Then the list of "CONFIRMED" bookings should contain 1 booking ... passed in 0.000s
+    And the list of "CANCELLED" bookings should contain 1 booking ... passed in 0.000s
+
+@scenario.end
+--------------------------------------------------------------------------------
+]]>
+</system-out></testcase><testcase classname="booking_manager.Booking Management" name="Create booking with invalid inputs" status="passed" time="0.00051"><system-out>
+<![CDATA[
+@scenario.begin
+
+  @negative
+  Scenario: Create booking with invalid inputs
+    Given the booking manager system is initialized ... passed in 0.000s
+    When I create a booking for flight "" with passenger "Alice Smith" and 1 seat ... passed in 0.000s
+    Then the booking should not be created ... passed in 0.000s
+    When I create a booking for flight "FL001" with passenger "" and 1 seat ... passed in 0.000s
+    Then the booking should not be created ... passed in 0.000s
+    When I create a booking for flight "FL001" with passenger "Alice Smith" and 0 seats ... passed in 0.000s
+    Then the booking should not be created ... passed in 0.000s
+
+@scenario.end
+--------------------------------------------------------------------------------
+]]>
+</system-out></testcase></testsuite>
