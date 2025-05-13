@@ -1,10 +1,11 @@
 name: Run BDD Tests, Upload to Datadog, and Generate Allure Report
 
 on:
+  workflow_dispatch:  # Allow manual triggering
   push:
-    branches: [ main, master ]
+    branches: [ main ]
   pull_request:
-    branches: [ main, master ]
+    branches: [ main ]
 
 # Update permissions for GitHub Pages deployment and potentially other actions
 permissions:
